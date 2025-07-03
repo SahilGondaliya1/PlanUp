@@ -1,21 +1,36 @@
 // const { createElement } = require("react");
 let taskCount = 0
-function addTask() {
-    taskCount = ++taskCount;
-    var taskList = document.querySelector(".task-grid");
-    var newTask = document.createElement('div');
-    newTask.id = "task-${taskCount}";
-    var deleteButton = Object.assign(document.createElement('button'), {id :"delete-button-wrapper"});
-    deleteButton.textContent = 'DELETE';
-    console.log(deleteButton.id)
-    newTask.appendChild(deleteButton); 
-    console.log("adding task")           
-    taskList.appendChild(newTask);    
-    var del = document.getElementById("delete-button-wrapper");
-    del.addEventListener("click", () => handleDeleteTask(this.anewTask.id));
-    newTask.appendChild(deleteButton); 
-    console.log("adding task")           
-    taskList.appendChild(newTask);    
+
+
+function inputEvent(){
+    //creating inout-window
+    const inputWindow = document.createElement('div');
+    inputWindow.setAttribute('class', 'inputWindow');
+    //adding window to body;
+    document.body.appendChild(inputWindow);
+    //adding input fields
+    const taskTitle = document.createElement('')
+}
+
+function addTask(){
+    //creating task div 
+    var task = Object.assign(document.createElement('div'), {id:`task-${++taskCount}`}); task.className = "taskCard";
+
+    //adding to task-grid  
+    let taskGrid = document.querySelector('.taskGrid');
+    task.textContent = task.id;
+    taskGrid.appendChild(task);
+
+    //creating delete button 
+    var deleteButton = document.createElement('button');
+    deleteButton.setAttribute('class','deleteButton');
+    deleteButton.textContent = 'delete';
+    deleteButton.addEventListener("click", ()=>handleDeleteTask(task.id));
+
+    //adding button to taskCard
+    var taskCard = document.getElementById(task.id);
+    taskCard.appendChild(deleteButton)
+
 }
 function handleDeleteTask(taskId){
     var deletingTask = document.getElementById(taskId);

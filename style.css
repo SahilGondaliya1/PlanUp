@@ -40,13 +40,23 @@ main{
     padding:var(--base-padding);
     
 }
-#task {
+
+.inputWindow {
+    position:absolute;
+    width: 400px;
+    height: 400px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: blueviolet;
+}
+.taskCard{
     /* width: 10rem; */
     height: 10rem;
     background-color: blue;
     margin: 1rem;
 }   
-#delete-button-wrapper{
+.deleteButton{
     height:2rem;
     width: 5rem;
     background-color: greenyellow;
