@@ -11,11 +11,30 @@
     <title>PlanUp.io</title>
 </head>
 <body>
-    <main>
+    <main> 
+         
     <div class="middle">
+        <nav style="display:flex; align-items: center;">
+        <img src="sitelogo.png" alt="logo-design" style="height: 3rem; margin-right: .6rem;">
+    </nav> 
         <div class="task-display">
-            <h1> My Task</h1>
-            <div class="taskGrid"></div>
+           
+            <div class="taskGrid">
+                <template id="taskCardTemplate">
+                    <div class="task-card">
+                        <div class="task-header">
+                            <h3 class="task-title"></h3>
+                            <div class="task-actions">
+                                <button class="delete-button">Delete</button>
+                                <button class="edit-button">Edit</button>
+                            </div>
+                        </div>
+                        <div class="task-description"></div>
+                        <div class="task-meta">
+                        </div>
+                    </div>
+                </template>
+            </div>
         </div>
     </div>
     <div class="right">
@@ -23,12 +42,13 @@
             <img src="" alt="" class="profile-image">
             <p>Sahil Gondaliya</p>
         </div>
+        <hr style="height: 1px; background-color: rgb(0, 0, 0, 0.04); border: none;">
         <div class="day-display-wrapper">
             <div class="day-display">
             <p class="date">October 1, 2023</p>
             <p class="day">Sunday</p>           
             </div>
-            <div class="add-task-wrapper" onclick="inputEvent()">
+            <div class="add-task-button" onclick="inputEvent()">
                 + Add Task
             </div>
         </div>
