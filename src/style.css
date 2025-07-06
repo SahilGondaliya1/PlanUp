@@ -38,58 +38,10 @@ main {
 nav{
   border-bottom: 1px solid rgba(0, 0, 0, 0.04)
 }
+
 .middle {
   background-color: var(--primary-color);
   padding: var(--base-padding);
-}
-
-.inputWindow { 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 1.6rem;
-  position: absolute;
-  width: auto;
-  height: auto;
-  border: 1px solid var(--secondary-color);
-  border-radius: var(--base-border-radius);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-}
-.input-window-item{
-  margin: .6rem .6rem;
-}
-.input-window-button{
-  margin: auto .6rem;  
-}
-.inputWindow #task-name{
-  height: 1.6rem;
-}
-#buttonDiv {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#buttonDiv button {
-   padding:10px var(--base-padding);  
-   border-radius: var(--base-border-radius);
-   width: 80px;
-   background-color: var(--secondary-color);
-   color: var(--secondary-text-color);
-}
-
-.inputWindow #submitBtn {
-  background: #000;
-  color: var(--accent-color-2);
-}
-#taskName{
-  font-size: var(--h1);
-  padding: 0.8rem 1.6rem;
-  margin: 0.8rem 1.6rem  ;
 }
 
 
@@ -110,7 +62,7 @@ nav{
   vertical-align: middle;
 }
 
-.delete-button {
+.task-delete-button ,.task-edit-button {
   height: 2rem;
   width: 5rem;
   background-color: greenyellow;
@@ -150,4 +102,53 @@ nav{
   border-radius: var(--base-border-radius);
   font-size: var(--p);  
   margin: auto 1rem;
+}
+
+.inputWindow{
+  position:fixed;
+  top:50%;
+  left:50%;;
+  transform: translate(-50%, -50%);
+  z-index: 9999;  
+  padding: var(--base-padding);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: var(--base-border-radius);
+  background-color: rgb(247, 247, 247);
+  box-shadow: 0px 0px 5px 5px rgba(125, 125, 125, 0.06);
+}
+.input-window-items {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+
+
+.task-input-buttons{
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
+.task-input-buttons button{
+  box-sizing: border-box;
+  height: 2.4rem;
+  width: 4.8rem;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+  font: var(--p);
+}
+
+#input-task-title{
+ box-sizing: border-box;
+ height: 2.4rem;
+ width: 100%;
+ border: 1px solid rgba(0, 0, 0, 0.2);
+ padding-left: 0.8rem;
 }

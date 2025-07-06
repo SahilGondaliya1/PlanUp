@@ -25,8 +25,8 @@
                         <div class="task-header">
                             <h3 class="task-title"></h3>
                             <div class="task-actions">
-                                <button class="delete-button">Delete</button>
-                                <button class="edit-button">Edit</button>
+                                <button class="task-delete-button">Delete</button>
+                                <button class="task-edit-button">Edit</button>
                             </div>
                         </div>
                         <div class="task-description"></div>
@@ -48,7 +48,7 @@
             <p class="date">October 1, 2023</p>
             <p class="day">Sunday</p>           
             </div>
-            <div class="add-task-button" onclick="inputEvent()">
+            <div class="add-task-button" tabindex="0">
                 + Add Task
             </div>
         </div>
@@ -56,5 +56,17 @@
         <div class="task-timeline"></div>
     </div>  
     </main>
+    <template id="inputWindowTemplate">
+        <div class="inputWindow">
+            <div class="task-input-details input-window-items">
+                <label for="task-title">Title:</label>
+                <input type="text" id="input-task-title"  name="task-title" placeholder="Enter Title Here" tabindex="0">                
+            </div>
+            <div class="task-input-buttons input-window-items">
+                <button id="input-submit-button">Add</button>                
+                <button id="input-cancle-button">Cancle</button>
+            </div>
+        </div>
+    </template>
 </body>
 </html>
