@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script/script.js" defer></script>
     <title>PlanUp.io</title>
-</head>
-<body>
-    <main> 
-         
-    <div class="middle">
-        <nav style="display:flex; align-items: center;">
-        <img src="sitelogo.png" alt="logo-design" style="height: 3rem; margin-right: .6rem;">
-    </nav> 
+  </head>
+  <body>
+    <main>
+        <nav style="display: flex; align-items: center">
+          <img
+            src="sitelogo.png"
+            alt="logo-design"
+            style="height: 3rem; margin: 0.6rem 0.6rem"
+          />
+          <div class="add-task-button" tabindex="0">+ Add Task</div>
+        </nav>
         <div class="task-display">
-           
-            <div class="taskGrid">
-                <template id="taskCardTemplate">
-                    <div class="task-card">
-                        <div class="task-header">
-                            <h3 class="task-title"></h3>
-                            <div class="task-actions">
-                                <button class="task-delete-button">Delete</button>
-                                <button class="task-edit-button">Edit</button>
-                            </div>
-                        </div>
-                        <div class="task-description"></div>
-                        <div class="task-meta">
-                        </div>
-                    </div>
-                </template>
-            </div>
+          <div class="taskGrid">
+          </div>
         </div>
-    </div>
-    <div class="right">
-        <div class="profile-display">
-            <img src="" alt="" class="profile-image">
-            <p>Sahil Gondaliya</p>
-        </div>
-        <hr style="height: 1px; background-color: rgb(0, 0, 0, 0.04); border: none;">
-        <div class="day-display-wrapper">
-            <div class="day-display">
-            <p class="date">October 1, 2023</p>
-            <p class="day">Sunday</p>           
-            </div>
-            <div class="add-task-button" tabindex="0">
-                + Add Task
-            </div>
-        </div>
-        <div class="calendar"></div>
-        <div class="task-timeline"></div>
-    </div>  
     </main>
     <template id="inputWindowTemplate">
-        <div class="inputWindow">
-            <div class="task-input-details input-window-items">
-                <label for="task-title">Title:</label>
-                <input type="text" id="input-task-title"  name="task-title" placeholder="Enter Title Here" tabindex="0">                
-            </div>
-            <div class="task-input-buttons input-window-items">
-                <button id="input-submit-button">Add</button>                
-                <button id="input-cancle-button">Cancle</button>
-            </div>
+      <div class="inputWindow">
+        <div class="task-input-details input-window-items">
+          <label for="task-input-title">Title:</label>
+          <input
+            type="text"
+            id="task-input-title"
+            name="task-title"
+            placeholder="Enter Title Here"
+            tabindex="0"
+          />
         </div>
+        <div class="task-input-buttons input-window-items">
+          <button id="input-submit-button">Add</button>
+          <button id="input-cancle-button">Cancle</button>
+        </div>
+      </div>
     </template>
-</body>
+    <template id="taskCardTemplate">
+        <div class="task-card" id="">
+          <div class="task-header">
+            <h3 class="task-title"></h3>
+            <div class="task-actions">
+              <i class="task-delete-button material-icons">delete</i>
+            </div>
+          </div>
+          <div class="task-description"></div>
+          <div class="task-meta"></div>
+        </div>
+      </template>
+  </body>
 </html>
