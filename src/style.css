@@ -19,7 +19,7 @@ html {
   --base-padding: 1rem;
   --base-margin: 0.5rem;
   --base-border-radius: 12px;
-  --h1: 1.2rem;
+  --h1: 1.6rem;
   --h2: 1rem;
   --p: 0.8rem;
 }
@@ -80,51 +80,66 @@ nav {
 }
 
 .task-card {
-  padding: 1.6rem;
-  height: auto;
-  background-color: var(--primary-color);
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  border-radius: var(--base-border-radius);
-  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.02);
-  /* margin: 1rem; */
-}
-.task-header {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0.8rem 1rem;
+  min-height: 60px;
+  background-color: var(--primary-color);
+  border: 1px solid rgb(0, 0, 0, 0.12);
+  border-radius: var(--base-border-radius);
+  box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.02);
   justify-content: space-between;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
-.task-header .task-title {
-  display: inline-block;
-  width: 60%;
+.task-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.7rem;
 }
-
-.task-card .task-heading {
-  width: 83.6%;
-  display: inline-block;
-  vertical-align: middle;
+.task-info {
+  width: 100%;
 }
-.task-card .task-title{
+.task-info__header .task-title {
   font-size: var(--h1);
+  margin: 0;
+  width: 100%;
 }
-
-.task-card .task-description{
-   font-size: var(--p); 
-   color: var(--secondary-text) ;
+.task-info__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--secondary-text);
+  font-size: 0.85rem;
 }
-
-.task-card{
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+.task-card .task-description,
+.task-due-date,
+.task-due-time {
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+  margin: 0;
 }
-.task-delete-button {
-  display: inline-block;
-  height: auto;
-  cursor: pointer;
-  transition: transform 200ms;
+.task-delete-button, .task-edit-button {
+  width: 22px;
+  height: 22px;
+  margin-left: 0.3rem;
 }
-.task-delete-button:hover {
-  transform: scale3d(1.2, 1.2, 1);
-  cursor: pointer;
+.task-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  margin-left: 0.5rem;
+}
+.task-complete-checkbox {
+  margin-right: 0.5rem;
+  accent-color: var(--accent-color-2);
+  transform: scale(1.1);
+  vertical-align: middle;
 }
 
 .add-task-button {
@@ -207,6 +222,23 @@ nav {
   min-height: var(--h1);
   text-rendering: auto;
   }
+#task-input-due {
+  box-sizing: border-box;
+  height: 2.4rem;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding-left: 0.8rem;
+  font-family: 'Nunito Sans';
+  line-height: 1rem;
+  margin-top: 0.2rem;
+}
+.task-due {
+  font-size: 0.85rem;
+  color: var(--accent-color-1);
+  margin-top: 0.2rem;
+  font-weight: 600;
+}
 #permisssion-window{
   display: flex;
   font-size: var(--p);
@@ -214,7 +246,54 @@ nav {
   width: max-content;
   text-align: center;
 }
-
+#permission-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#permission-window > * {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  max-width: 90vw;
+}
+#permission-text {
+  color: #c62828;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+#permission-button {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(198,40,40,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+  margin-top: 0.5rem;
+}
+#permission-button:hover {
+  background: #b71c1c;
+  box-shadow: 0 4px 16px rgba(198,40,40,0.18);
+}
 #input-cancle-button {
   display: block;
   position:absolute;
@@ -225,4 +304,9 @@ nav {
   position: relative;
   left: 50%;
   transform: translate(-50%);
+}
+.task-completed .task-title,
+.task-completed .task-description {
+  text-decoration: line-through;
+  color: #aaa;
 }

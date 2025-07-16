@@ -1,5 +1,6 @@
-import {addTask , handleDeleteTask,handleTaskInputButton,handleEditTask} from "./task.js";
 
+
+import {addTask , handleDeleteTask,handleTaskInputButton,handleEditTask} from "./task.js";
 
 
 export const taskGrid = document.querySelector('.taskGrid');
@@ -12,12 +13,13 @@ export const loadTaskFromStorage = () => {
       if (taskID.startsWith('t')) { // load only task keys
         let taskObj;
         try {
-          taskObj = JSON.parse(localStorage.getItem(taskID));
+          const data  = JSON.parse(localStorage.getItem(taskID));
+          taskObj = {id:taskID, ...data};
         } catch {
           // fallback for old format
-          taskObj = { title: localStorage.getItem(taskID), description: '' };
+          console.log("Issue found in loading data from Local.");
         }
-        const card = buildTaskCard(taskID, taskObj);
+        const card = buildTaskCard(taskObj);
         // Add edit button
 
         taskGrid.appendChild(card);
@@ -43,10 +45,15 @@ export const createInputWindowByTemplate = () => {
  * @description - creates the input window via DOM 
  */
 export const showInputWindow = () => {
+//usinng flatpickr for date time accessibility
   //creating inout-window
   const fragment = createInputWindowByTemplate();
   const inputWindow = fragment.querySelector(".inputWindow");
-
+  const date = flatpickr(inputWindow.querySelector('#task-input-due'),{
+    enableTime: true,
+    dateFormat:'Y-m-d H:i',
+  })
+  // console.log(inputWindow.querySelector('#task-input.due').value)
   //adding window to body;
   document.body.appendChild(inputWindow);
   
@@ -92,7 +99,7 @@ export const removePermissionWindow= (window) => {
     document.body.querySelector('#permission-window').remove();
 }
 
-export const showEditTaskWindow = (taskID, taskObj) => {
+export const showEditTaskWindow = (taskObj) => {
   if(document.body.querySelector('.inputWindow')) return;
   // Clone the input window template
   const fragment = createInputWindowByTemplate();
@@ -115,12 +122,13 @@ export const showEditTaskWindow = (taskID, taskObj) => {
   inputWindow.querySelector('#input-submit-button').onclick = () => {
     const newTitle = inputWindow.querySelector('#task-input-title').value.trim();
     const newDesc = inputWindow.querySelector('#task-input-desc').value;
+    const newDue = inputWindow.querySelector('time-input-due').value.split(' ');
     if (newTitle.length === 0) {
       alert('Title cannot be empty.');
       return;
     }
     // Call handler in task.js
-    handleEditTask(taskID, newTitle, newDesc);
+    handleEditTask(taskObj.id, newTitle,newDesc,newDue);
     hideInputWindow();
   };
   // Cancel handler
@@ -131,14 +139,38 @@ export const showEditTaskWindow = (taskID, taskObj) => {
 
 
 
-export const buildTaskCard= (taskID, taskObj) => {
+export const buildTaskCard= (taskObj) => {
     const fragment = document.getElementById("taskCardTemplate").content.cloneNode(true);
     const card = fragment.querySelector('.task-card');
-    card.setAttribute('id', taskID)
+    card.setAttribute('id', taskObj.id)
     card.querySelector(".task-title").textContent = taskObj.title;
     card.querySelector(".task-description").textContent = taskObj.description || '';
-    card.querySelector(".task-delete-button").addEventListener("click", () => handleDeleteTask(taskID));
-    card.querySelector('.task-edit-button').addEventListener("click",()=>showEditTaskWindow(taskID,taskObj));
+    card.querySelector('.task-due-date').textContent = taskObj.date;
+    card.querySelector('.task-due-time').textContent = taskObj.time;
+    // Completion checkbox
+    const checkbox = card.querySelector('.task-complete-checkbox');
+    const completed = !!taskObj.completed;
+    checkbox.checked = completed;
+    if (completed) {
+      card.classList.add('task-completed');
+    } else {
+      card.classList.remove('task-completed');
+    }
+    checkbox.addEventListener('change', () => {
+      // Update localStorage
+      const updatedTask = { ...taskObj, completed: checkbox.checked };
+      localStorage.setItem(taskObj.id, JSON.stringify(updatedTask));
+      // Update UI
+      if (checkbox.checked) {
+        card.classList.add('task-completed');
+      } else {
+        card.classList.remove('task-completed');
+      }
+      // Also update taskObj for edit
+      taskObj.completed = checkbox.checked;
+    });
+    card.querySelector(".task-delete-button").addEventListener("click", () => handleDeleteTask(taskObj));
+    card.querySelector('.task-edit-button').addEventListener("click",()=>showEditTaskWindow(taskObj));
     return card;
 }
 
@@ -149,11 +181,10 @@ export const buildTaskCard= (taskID, taskObj) => {
  *@function createNewTaskCard
  * @param {String} taskTitle - Task heading displayed on bold
  */
-export const createNewTaskCard = (taskTitle, taskDescription) => {
-  const taskID = "t" + new Date().getTime();
-  const card = buildTaskCard(taskID, { title: taskTitle, description: taskDescription });
+export const createNewTaskCard = (taskObj) => {
+  const card = buildTaskCard(taskObj);
   try {
-    localStorage.setItem(taskID, JSON.stringify({ title: taskTitle, description: taskDescription }));
+    localStorage.setItem(taskObj.id, JSON.stringify({ title: taskObj.title, description: taskObj.description,date:taskObj.date,time:taskObj.time, completed: taskObj.completed }));
   } catch {
     window.alert("Task Not Saved. Local Storage is full")
     return;
