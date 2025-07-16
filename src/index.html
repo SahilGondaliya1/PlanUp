@@ -9,27 +9,33 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
     <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=cancel,delete/">    
+<link rel="stylesheet" href="style.css" />
     <script type="module" src="script/script.js" defer></script>
     <title>PlanUp.io</title>
   </head>
   <body>
-    <main>
-        <nav style="display: flex; align-items: center">
+    <header>
+      <nav>
           <img
             src="sitelogo.png"
-            alt="logo-design"
+            alt="PlanUp Logo"
             style="height: 3rem; margin: 0.6rem 0.6rem"
+            loading="lazy"
+            onerror="this.style.display='hidden';"
           />
-          <div class="add-task-button" tabindex="0">+ Add Task</div>
+          <div class="nav-options">
+          <button class="add-task-button" tabindex="0">+ Add Task</button>
+          <img src="./images/delete_forever.svg" class="reset-task-button" tabindex="0">
+          </div>
         </nav>
+    </header>
+    <main>
         <div class="task-display">
           <div class="taskGrid">
           </div>
@@ -37,6 +43,9 @@
     </main>
     <template id="inputWindowTemplate">
       <div class="inputWindow">
+        <div class="input-window-header input-window-items">
+           <img src="./images/close.svg" class="material-symbols-outlined" id="input-cancle-button">
+        </div>
         <div class="task-input-details input-window-items">
           <label for="task-input-title">Title:</label>
           <input
@@ -47,9 +56,20 @@
             tabindex="0"
           />
         </div>
+        <div class="task-input-details input-window-items">
+          <label for="task-input-desc">Description:</label>
+          <textarea
+            id="task-input-desc"
+            name="task-desc"
+            placeholder="Enter Description Here"
+            tabindex="0"
+            rows="3"
+          ></textarea>
+        </div>
         <div class="task-input-buttons input-window-items">
           <button id="input-submit-button">Add</button>
-          <button id="input-cancle-button">Cancle</button>
+          <!-- <button id="input-cancle-button">Cancle</button> -->
+          
         </div>
       </div>
     </template>
@@ -58,7 +78,8 @@
           <div class="task-header">
             <h3 class="task-title"></h3>
             <div class="task-actions">
-              <i class="task-delete-button material-icons">delete</i>
+              <img  src="images/delete.svg" class="material-symbols-outlined task-delete-button"loading="lazy" onerror="this.style.display='hidden'" class="task-delete-button"> 
+              <img src="images/edit.svg" alt="edit" loading="lazy" onerror="this.style.display='hidden'" class="task-edit-button">             
             </div>
           </div>
           <div class="task-description"></div>

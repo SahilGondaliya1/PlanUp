@@ -1,5 +1,5 @@
 import {showInputWindow , hideInputWindow, loadTaskFromStorage} from './ui.js';
-import {addTask, handleDeleteTask} from './task.js';
+import {addTask, handleDeleteTask,clearTaskGrid} from './task.js';
 
 document.querySelector(".add-task-button").addEventListener("click", () => {
   if(!document.querySelector('.inputWindow'))
@@ -10,9 +10,11 @@ document.querySelector(".add-task-button").addEventListener("keydown", (event) =
     showInputWindow();
   }
 });
+document.querySelector(".reset-task-button").addEventListener("click", ()=>{
+    clearTaskGrid();
+})
 
 window.addEventListener("DOMContentLoaded", loadTaskFromStorage);
-
 
 
 

@@ -1,29 +1,13 @@
-import { showInputWindow , hideInputWindow } from "./ui.js";
+import { showInputWindow,createNewTaskCard , hideInputWindow ,taskGrid, createPermissionWindow,removePermissionWindow} from "./ui.js";
 
-/**
- *
- * @param {String} taskTitle - Task heading displayed on bold
- */
-export const createTaskCard = (taskTitle) => {
-  //cloneNode(true) is to deep clone the element with child nodes
-  const taskID = "t" + new Date().getTime();
-  const fragment = document.getElementById("taskCardTemplate").content.cloneNode(true);
-  const card = fragment.querySelector('.task-card');
-  if(card){console.log(true)}
-  card.setAttribute('id', taskID)
-  card.querySelector(".task-title").textContent = taskTitle;
-  localStorage.setItem(taskID, taskTitle);
-  card.querySelector(".task-delete-button").addEventListener("click", () => handleDeleteTask(taskID));
-  return card;
-}
+
 
 /**
  * @param {String} taskTitle - task detail to be displayed
  */
 
-export const addTask = (taskTitle) => {
-  const card = createTaskCard(taskTitle);
-  const taskGrid = document.querySelector(".taskGrid");
+export const addTask = (taskTitle, taskDescription) => {
+  const card = createNewTaskCard(taskTitle, taskDescription);
   taskGrid.appendChild(card);
 }
 
@@ -32,6 +16,7 @@ export const addTask = (taskTitle) => {
  * @param {String} taskID - task-id to be deleted
  */
 export const handleDeleteTask = (taskID)=> {
+  if(document.body.querySelector('.inputWindow')) return;
   var deletingTask = document.getElementById(taskID);
   if (deletingTask) {
     localStorage.removeItem(taskID);
@@ -40,3 +25,39 @@ export const handleDeleteTask = (taskID)=> {
   }
 }
 
+/**
+ * @function handleTaskInputButton 
+ * @description - it accepts ele
+ */
+export const handleTaskInputButton = (inputWindow) => {
+  let taskTitle = inputWindow.querySelector("#task-input-title").value;
+  let taskDescription = inputWindow.querySelector("#task-input-desc").value;
+  hideInputWindow();
+  taskTitle = taskTitle.trim();
+  if (taskTitle.length > 0) {
+    addTask(taskTitle, taskDescription);
+  }
+}
+
+export const clearTaskGrid = ()=>{
+    const permissionWindow = createPermissionWindow();
+    if(!document.querySelector('#permission-window')){
+      document.body.appendChild(permissionWindow);
+    }
+    const button = permissionWindow.querySelector('#permission-button');
+    button.addEventListener("click" , () => { 
+        removePermissionWindow(permissionWindow);      
+        taskGrid.innerHTML =" ";
+    })        
+}
+
+export function handleEditTask(taskID, newTitle, newDesc) {
+  // Update localStorage
+  localStorage.setItem(taskID, JSON.stringify({ title: newTitle, description: newDesc }));
+  // Update UI if card is present
+  const card = document.getElementById(taskID);
+  if (card) {
+    card.querySelector('.task-title').textContent = newTitle;
+    card.querySelector('.task-description').textContent = newDesc;
+  }
+}

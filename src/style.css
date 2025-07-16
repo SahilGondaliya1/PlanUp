@@ -13,12 +13,13 @@ html {
   --primary-text-color: #000000;
   --secondary-color: #0a0606;
   --secondary-text-color: #f9f9f9;
+  --secondary-text:#4b4b4b;
   --accent-color-1: #ff8147;
   --accent-color-2: #ffc000;
   --base-padding: 1rem;
   --base-margin: 0.5rem;
   --base-border-radius: 12px;
-  --h1: 4 rem;
+  --h1: 1.2rem;
   --h2: 1rem;
   --p: 0.8rem;
 }
@@ -28,19 +29,30 @@ body {
   background-color: var(--primary-color);
   height: 100%;
   width: 100%;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 main {
   display: grid;
   height: 100vh;
-  width: 100vw;
+  width: auto;
+
 }
+
 nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  vertical-align: middle;
   padding-bottom: var(--base-padding);
+  padding-top: var(--base-padding);
+  padding-right: 0px;
+  margin-inline-start: 1rem;
+  margin-inline-end: 1rem;
+}
+.nav-options{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .middle {
@@ -48,8 +60,9 @@ nav {
   padding: var(--base-padding);
 }
 
+
 .taskGrid {
-  overflow-y: auto;
+  overflow:y auto;
   height: 75vh;
   scroll-behavior: smooth;
 }
@@ -73,7 +86,7 @@ nav {
   border: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: var(--base-border-radius);
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.02);
-  margin: 1rem;
+  /* margin: 1rem; */
 }
 .task-header {
   display: flex;
@@ -84,12 +97,25 @@ nav {
   width: 60%;
 }
 
-.taskCard .task-heading {
+.task-card .task-heading {
   width: 83.6%;
   display: inline-block;
   vertical-align: middle;
 }
+.task-card .task-title{
+  font-size: var(--h1);
+}
 
+.task-card .task-description{
+   font-size: var(--p); 
+   color: var(--secondary-text) ;
+}
+
+.task-card{
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .task-delete-button {
   display: inline-block;
   height: auto;
@@ -102,15 +128,15 @@ nav {
 }
 
 .add-task-button {
+  border: 0px;
   background-color: var(--accent-color-2);
   color: var(--primary-text-color);
   padding: var(--base-padding) 1.5rem;
   border-radius: var(--base-border-radius);
   font-size: var(--p);
-  margin: auto 1rem;
 }
 
-.inputWindow {
+.inputWindow, #permission-window {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -156,11 +182,47 @@ nav {
   background-color: var(--accent-color-1);
   color: var(--secondary-text-color);
 }
-#task-input-title {
+
+.task-input-buttons button:active {
+  background-color: #fff;
+  color: var(--secondary-text-color);
+
+}
+#task-input-title,#task-input-desc {
   box-sizing: border-box;
   height: 2.4rem;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding-left: 0.8rem;
+  font-family: 'Nunito Sans';
+  line-height: 1rem;
+  
+}
+
+#task-input-desc{
+  resize: none;
+  width: auto;
+  padding-top: 0.8rem;
+  min-height: var(--h1);
+  text-rendering: auto;
+  }
+#permisssion-window{
+  display: flex;
+  font-size: var(--p);
+  flex-wrap: nowrap;
+  width: max-content;
+  text-align: center;
+}
+
+#input-cancle-button {
+  display: block;
+  position:absolute;
+  left:85%;
+  top:5%;
+}
+#input-submit-button {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
