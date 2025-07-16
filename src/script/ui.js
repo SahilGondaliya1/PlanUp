@@ -163,8 +163,12 @@ export const buildTaskCard= (taskObj) => {
       // Update UI
       if (checkbox.checked) {
         card.classList.add('task-completed');
+        // Move to bottom
+        card.parentNode && card.parentNode.appendChild(card);
       } else {
         card.classList.remove('task-completed');
+        // Move to top
+        card.parentNode && card.parentNode.insertBefore(card, card.parentNode.firstChild);
       }
       // Also update taskObj for edit
       taskObj.completed = checkbox.checked;
