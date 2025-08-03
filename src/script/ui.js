@@ -108,6 +108,11 @@ export const showEditTaskWindow = (taskObj) => {
   // Pre-fill values
   inputWindow.querySelector('#task-input-title').value = taskObj.title;
   inputWindow.querySelector('#task-input-desc').value = taskObj.description || '';
+  const date = flatpickr(inputWindow.querySelector('#task-input-due'),{
+    enableTime: true,
+    disableMobile:false,
+    dateFormat:'Y-m-d H:i',
+  })
   // Change button text to 'Save'
   inputWindow.querySelector('#input-submit-button').textContent = 'Save';
 
@@ -115,7 +120,7 @@ export const showEditTaskWindow = (taskObj) => {
 
   const existing = document.body.querySelector('.inputWindow');
   //if(existing) return;
-  if (existing) existing.remove();
+  if (existing) existing.remove(); 
     document.body.appendChild(inputWindow);
 
   // Save handler
