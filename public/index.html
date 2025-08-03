@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png"href="images/site_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css" />
+     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module" src="src\script\script.js" defer></script>
+    
+    <title>PlanUp.io</title>
+  </head>
+  <body>
+    <div class="display-container">
+    <header>
+      <nav>
+        <img
+          src="images/sitelogo.png"
+          alt="PlanUp Logo"
+          style="height: 3rem; margin: 0.6rem 0.6rem"
+          loading="lazy"
+          onerror="this.style.display='hidden';"
+        />
+        <div class="nav-options">
+          <button class="add-task-button" tabindex="0" >+ Add Task</button>
+          <img
+            src="images/delete_forever.svg"
+            class="reset-task-button"
+            tabindex="0"
+            title="Delete All task"
+          />
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="task-display">
+        <div class="taskGrid"></div>
+      </div>
+    </main>
+    </div>
+    <template id="inputWindowTemplate">
+      <div class="inputWindow">
+        <div class="input-window-header input-window-items">
+          <img
+            src="images/close.svg"
+            class="material-symbols-outlined"
+            id="input-cancle-button"
+          />
+        </div>
+        <div class="task-input-details input-window-items">
+          <label for="task-input-title">Title:</label>
+          <input
+            type="text"
+            id="task-input-title"
+            name="task-title"
+            placeholder="Enter Title Here"
+            tabindex="0"
+          />
+        </div>
+        <div class="task-input-details input-window-items">
+          <label for="task-input-desc">Description:</label>
+          <textarea
+            id="task-input-desc"
+            name="task-desc"
+            placeholder="Enter Description Here"
+            tabindex="0"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="task-input-details input-window-items">
+          <label for="task-input-due">Due Date & Time:</label>
+          <input
+            type="text"
+            id="task-input-due"
+            name="task-due"
+            tabindex="0"
+          />
+        </div>
+        <div class="task-input-buttons input-window-items">
+          <button id="input-submit-button">Add</button>
+          <!-- <button id="input-cancle-button">Cancle</button> -->
+        </div>
+      </div>
+    </template>
+    <template id="taskCardTemplate">
+      <div class="task-card" id="">
+        <div class="task-details">
+          <div class="task-status">
+            <input type="checkbox" class="task-complete-checkbox" />
+          </div>
+          <div class="task-info">
+            <div class="task-info__header">
+              <h1 class="task-title"></h1>
+            </div>
+            <br/>
+            <div class="task-info__footer">
+              <div class="task-description"></div>
+              <span style="color:#4b4b4b; font-size: 1rem;">Due on:</span>
+              <div class="task-due-date"></div>
+              <div class="task-due-time"></div>
+            </div>
+          </div>
+        </div>
+        <div class="task-actions">
+          <img
+            src="images/delete.svg"
+            class="material-symbols-outlined task-delete-button"
+            loading="lazy"
+            onerror="this.style.display='hidden'"
+            class="task-delete-button"
+          />
+          <img
+            src="images/edit.svg"
+            alt="edit"
+            loading="lazy"
+            onerror="this.style.display='hidden'"
+            class="task-edit-button"
+          />
+        </div>
+      </div>
+    </template>
+  </body>
+</html>
