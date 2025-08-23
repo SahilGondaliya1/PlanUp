@@ -19,6 +19,7 @@
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="module" src="./script/script.js" defer></script>
     <title>PlanUp.io</title>
@@ -64,16 +65,16 @@
           <input
             type="text"
             id="task-input-title"
-            name="task-title"
+            name="task-input-title"
             placeholder="Enter Title Here"
             tabindex="0"
           />
         </div>
         <div class="task-input-details input-window-items">
-          <label for="task-input-desc">Description:</label>
+          <label for="task-input-description">Description:</label>
           <textarea
-            id="task-input-desc"
-            name="task-desc"
+            id="task-input-description"
+            name="task-input-description"
             placeholder="Enter Description Here"
             tabindex="0"
             rows="3"
@@ -84,7 +85,7 @@
           <input
             type="text"
             id="task-input-due"
-            name="task-due"
+            name="task-input-due"
             tabindex="0"
           />
         </div>
@@ -98,7 +99,7 @@
       <div class="task-card" id="">
         <div class="task-details">
           <div class="task-status">
-            <input type="checkbox" class="task-complete-checkbox" />
+            <input type="checkbox" class="task-complete-checkbox" id="checkbox"/>
           </div>
           <div class="task-info">
             <div class="task-info__header">

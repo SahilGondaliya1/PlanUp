@@ -212,7 +212,7 @@ nav {
   color: var(--secondary-text-color);
 
 }
-#task-input-title,#task-input-desc {
+#task-input-title,#task-input-description {
   box-sizing: border-box;
   height: 2.4rem;
   width: 100%;
@@ -224,10 +224,10 @@ nav {
   
 }
 
-#task-input-desc{
+#task-input-description{
   resize: none;
   width: auto;
-  padding-top: 0.8rem;
+  padding-top: 0.7rem;
   min-height: var(--h1);
   text-rendering: auto;
   }

@@ -1,5 +1,5 @@
-import {showInputWindow , hideInputWindow, loadTaskFromStorage} from './ui.js';
-import {addTask, handleDeleteTask,clearTaskGrid} from './task.js';
+import { showInputWindow } from "./ui.js";
+import { loadTask } from "./task.js";
 
 document.querySelector(".add-task-button").addEventListener("click", () => {
   if(!document.querySelector('.inputWindow'))
@@ -14,7 +14,7 @@ document.querySelector(".reset-task-button").addEventListener("click", ()=>{
     clearTaskGrid();
 })
 
-window.addEventListener("DOMContentLoaded", loadTaskFromStorage);
+window.addEventListener("DOMContentLoaded", loadTask);
 
 
 

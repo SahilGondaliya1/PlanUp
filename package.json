@@ -1,5 +1,63 @@
 {
+  
+  "name": "planup",
+  
+  "version": "1.0.0",
+  
+  "description": ">PlanUp",
+  
+  "main": "index.js",
+  
+  "type": "module",
+  
+  "scripts": {
+  
+    
+  "test": "echo \"Error: no test specified\" && exit 1"
+  
+  },
+  
+  "repository": {
+  
+    
+  "type": "git",
+  
+    
+  "url": "git+https://github.com/SahilGondaliya1/PlanUp.git"
+  
+  },
+  
+  "keywords": [],
+  
+  "author": "",
+  
+  "license": "ISC",
+  
+  "bugs": {
+  
+    
+  "url": "https://github.com/SahilGondaliya1/PlanUp/issues"
+  
+  },
+  
+  "homepage": "https://github.com/SahilGondaliya1/PlanUp#readme",
+  
   "dependencies": {
-    "flatpickr": "^4.6.13"
+  
+    
+  "axios": "^1.11.0",
+  
+    
+  "cors": "^2.8.5",
+  
+    
+  "dotenv": "^17.2.1",
+  
+    
+  "express": "^5.1.0",
+  
+    
+  "flatpickr": "^4.6.13"
+  
   }
 }
